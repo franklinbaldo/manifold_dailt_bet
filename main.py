@@ -1,5 +1,5 @@
 import requests
-
+import os
 def place_bet(market_id, outcome, bet_amount, key):
   # Set the request URL and headers
   url = "https://manifold.markets/api/v0/bet"
@@ -42,3 +42,19 @@ def get_market_id(market_url, key):
   
   # Return the market ID
   return market_id
+
+
+def main():
+  # Get the key from the environment
+  key = os.environ["KEY"]
+
+  # Get the market ID from the URL
+  market_url = "https://manifold.markets/FranklinBaldo/this-market-resolves-yes-when-an-ar"
+  market_id = get_market_id(market_url, key)
+
+  # Place the bet
+  response = place_bet(market_id, "NO", 25, key)
+
+
+if __name__ == "__main__":
+  main()
