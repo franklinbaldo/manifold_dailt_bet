@@ -16,7 +16,7 @@ def place_bet(market_id, outcome, bet_amount, key):
   response = requests.post(url, headers=headers, json=body)
 
   # Assert that the request was successful
-  assert response.status_code == 200, print(response.json(),response.status_code)
+  assert response.status_code == 200
 
   # Return the response
   return response
@@ -41,7 +41,7 @@ def main():
   key = os.environ["KEY"]
 
   # Get the market ID from the URL
-  market_url = "https://manifold.markets/FranklinBaldo/brazil-election-will-brazil-have-a-b38010e4acf2"
+  market_url = "https://manifold.markets/FranklinBaldo/this-market-resolves-yes-when-an-ar"
   market_id = get_market_id(market_url, key)
 
   # Place the bet
