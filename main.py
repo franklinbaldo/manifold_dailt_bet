@@ -7,9 +7,9 @@ def place_bet(market_id, outcome, bet_amount, key):
 
   # Set the request body with the market ID, outcome, and bet amount
   body = {
-    "marketId": market_id,
+    "contractId": market_id,
     "outcome": outcome,
-    "betAmount": bet_amount
+    "amount": bet_amount
   }
 
   # Send the request to the API
