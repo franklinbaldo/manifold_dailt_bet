@@ -1,4 +1,4 @@
-name: Main Script
+name: Run bot
 
 on:
   workflow_dispatch:
@@ -6,18 +6,20 @@ on:
     - cron: '0 6 * * *'
 
 jobs:
-  run_main:
+  build:
+    name: run bot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python
+      - name: Setup python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: "3.9"
+          architecture: x64
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Set API key as environment variable
         env:
           KEY: ${{ secrets.API_KEY }}
       - name: Run main script
-        run: python main.py
+        run: python3 main.py
