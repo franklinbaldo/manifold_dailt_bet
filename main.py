@@ -1,12 +1,10 @@
 import requests
-
+import os
 def place_bet(market_id, outcome, bet_amount, key):
   # Set the request URL and headers
   url = "https://manifold.markets/api/v0/bet"
-  headers = {
-    "Authorization": "Key " + key
-  }
-  
+  headers = {"Authorization": f"Key {key}"}
+
   # Set the request body with the market ID, outcome, and bet amount
   body = {
     "marketId": market_id,
@@ -16,10 +14,10 @@ def place_bet(market_id, outcome, bet_amount, key):
 
   # Send the request to the API
   response = requests.post(url, headers=headers, json=body)
-  
+
   # Assert that the request was successful
   assert response.status_code == 200
-  
+
   # Return the response
   return response
 
@@ -27,18 +25,28 @@ def place_bet(market_id, outcome, bet_amount, key):
 def get_market_id(market_url, key):
   # Extract the market slug from the URL
   market_slug = market_url.split("/")[-1]
-  
+
   # Set the request URL and headers
-  url = "https://manifold.markets/api/v0/slug/" + market_slug
-  headers = {
-    "Authorization": "Key " + key
-  }
+  url = f"https://manifold.markets/api/v0/slug/{market_slug}"
+  headers = {"Authorization": f"Key {key}"}
 
   # Send the request to the API
   response = requests.get(url, headers=headers)
-  
-  # Get the market ID from the response
-  market_id = response.json()["id"]
-  
-  # Return the market ID
-  return market_id
+
+  return response.json()["id"]
+
+
+def main():
+  # Get the key from the environment
+  key = os.environ["KEY"]
+
+  # Get the market ID from the URL
+  market_url = "https://manifold.markets/FranklinBaldo/this-market-resolves-yes-when-an-ar"
+  market_id = get_market_id(market_url, key)
+
+  # Place the bet
+  response = place_bet(market_id, "NO", 25, key)
+
+
+if __name__ == "__main__":
+  main()
