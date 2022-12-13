@@ -22,9 +22,7 @@ def place_bet(market_id, outcome, bet_amount, key):
   
   # Return the response
   return response
-import requests
 
-import requests
 
 def get_market_id(market_url, key):
   # Extract the market slug from the URL
