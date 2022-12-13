@@ -41,7 +41,7 @@ def main():
   key = os.environ["KEY"]
 
   # Get the market ID from the URL
-  market_url = "https://manifold.markets/FranklinBaldo/this-market-resolves-yes-when-an-ar"
+  market_url = "https://manifold.markets/FranklinBaldo/brazil-election-will-brazil-have-a-b38010e4acf2"
   market_id = get_market_id(market_url, key)
 
   # Place the bet
