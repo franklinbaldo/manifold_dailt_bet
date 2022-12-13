@@ -16,7 +16,7 @@ def place_bet(market_id, outcome, bet_amount, key):
   response = requests.post(url, headers=headers, json=body)
 
   # Assert that the request was successful
-  assert response.status_code == 200
+  assert response.status_code == 200, print(response.json(),response.status_code)
 
   # Return the response
   return response
