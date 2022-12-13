@@ -1,8 +1,14 @@
 name: Main Script
 
 on:
+  workflow_dispatch:
+    inputs:
+      run_now:
+        description: 'Run the script now'
+        required: true
+        default: 'false'
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 6 * * *'
 
 jobs:
   run_main:
