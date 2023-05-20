@@ -2,8 +2,7 @@ name: place a bet
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '5 9 * * *'
+
 
 jobs:
   build:
